@@ -1,14 +1,12 @@
-import React from "react";
+import React from 'react';
 import Animated, {
   Extrapolation,
   interpolate,
   useAnimatedStyle,
-  useSharedValue,
-} from "react-native-reanimated";
-import { colors, sizes } from "../../constants/theme";
+} from 'react-native-reanimated';
+import {colors, sizes} from '../../constants/theme';
 
-const CustomBackground = ({ animatedIndex, style }) => {
-
+const CustomBackground = ({animatedIndex, style}) => {
   const containerStyle = useAnimatedStyle(() => ({
     ...style,
     backgroundColor: colors.white,
@@ -18,7 +16,7 @@ const CustomBackground = ({ animatedIndex, style }) => {
       animatedIndex.value,
       [0, 0.08],
       [0, 1],
-      Extrapolation.CLAMP
+      Extrapolation.CLAMP,
     ),
   }));
   return <Animated.View style={containerStyle} />;

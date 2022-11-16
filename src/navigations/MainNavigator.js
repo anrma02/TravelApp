@@ -1,9 +1,9 @@
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import TabNavigator from "./TabNavigator";
-import { StatusBar } from "react-native";
-import TripDetailsScreen from "../screens/TripDetailsScreen";
-import { createSharedElementStackNavigator } from "react-navigation-shared-element";
+import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import TabNavigator from './TabNavigator';
+import {StatusBar} from 'react-native';
+import TripDetailsScreen from '../screens/TripDetailsScreen';
+import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
 
 const Stack = createSharedElementStackNavigator();
 
@@ -18,6 +18,7 @@ const MainNavigator = () => {
           options={{
             headerShown: false,
             useNativeDriver: true,
+            gestureEnabled: false,
           }}
         />
         <Stack.Screen
@@ -26,7 +27,8 @@ const MainNavigator = () => {
           options={{
             headerShown: false,
             useNativeDriver: true,
-            cardStyleInterpolator: ({ current: { progress } }) => ({
+            gestureEnabled: false,
+            cardStyleInterpolator: ({current: {progress}}) => ({
               cardStyle: {
                 opacity: progress,
               },
