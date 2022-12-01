@@ -1,41 +1,41 @@
-import React, {useMemo} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
-import {colors, sizes, spacing} from '../../constants/theme';
-import * as Animatable from 'react-native-animatable';
-import BottomSheet, {BottomSheetScrollView} from '@gorhom/bottom-sheet';
-import CustomHandler from './CustomHandler';
-import CustomBackground from './CustomBackground';
+import React, { useMemo } from "react";
+import { View, StyleSheet, Text } from "react-native";
+import { colors, sizes, spacing } from "../../constants/theme";
+import * as Animatable from "react-native-animatable";
+import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
+import CustomHandler from "./CustomHandler";
+import CustomBackground from "./CustomBackground";
 import Animated, {
   Extrapolation,
   interpolate,
   interpolateColor,
   useAnimatedStyle,
   useSharedValue,
-} from 'react-native-reanimated';
-import Icon from '../shared/Icon';
-import Divider from '../shared/Divider';
-import SectionHeader from '../shared/SectionHeader';
-import RatingOverall from '../shared/Rating/RatingOverall';
-import HotelsCarousel from './HotelsCarousel';
-import Reviews from '../Reviews/Reviews';
+} from "react-native-reanimated";
+import Icon from "../shared/Icon";
+import Divider from "../shared/Divider";
+import SectionHeader from "../shared/SectionHeader";
+import RatingOverall from "../shared/Rating/RatingOverall";
+import HotelsCarousel from "./HotelsCarousel";
+import Reviews from "../Reviews/Reviews";
 
 const AnimatedDivider = Animated.createAnimatedComponent(Divider);
 
-const TripDetailsCard = ({trip}) => {
+const TripDetailsCard = ({ trip }) => {
   const animatedIndex = useSharedValue(0);
-  const snapPoints = useMemo(() => ['30%', '80%'], []);
+  const snapPoints = useMemo(() => ["30%", "80%"], []);
 
   const titleStyle = useAnimatedStyle(() => ({
     color: interpolateColor(
       animatedIndex.value,
       [0, 0.08],
-      [colors.white, colors.primary],
+      [colors.white, colors.primary]
     ),
     marginBottom: interpolate(
       animatedIndex.value,
       [0, 0.08],
       [0, 10],
-      Extrapolation.CLAMP,
+      Extrapolation.CLAMP
     ),
   }));
 
@@ -43,13 +43,13 @@ const TripDetailsCard = ({trip}) => {
     color: interpolateColor(
       animatedIndex.value,
       [0, 0.08],
-      [colors.white, colors.lightGray],
+      [colors.white, colors.lightGray]
     ),
     fontSize: interpolate(
       animatedIndex.value,
       [0, 0.08],
       [sizes.title, sizes.body],
-      Extrapolation.CLAMP,
+      Extrapolation.CLAMP
     ),
   }));
 
@@ -60,7 +60,7 @@ const TripDetailsCard = ({trip}) => {
           animatedIndex.value,
           [0, 0.08],
           [0, 1],
-          Extrapolation.CLAMP,
+          Extrapolation.CLAMP
         ),
       },
     ],
@@ -73,7 +73,7 @@ const TripDetailsCard = ({trip}) => {
           animatedIndex.value,
           [0, 0.08],
           [40, 0],
-          Extrapolation.CLAMP,
+          Extrapolation.CLAMP
         ),
       },
     ],
@@ -81,7 +81,7 @@ const TripDetailsCard = ({trip}) => {
       animatedIndex.value,
       [0, 0.08],
       [0, 1],
-      Extrapolation.CLAMP,
+      Extrapolation.CLAMP
     ),
   }));
 
@@ -91,13 +91,15 @@ const TripDetailsCard = ({trip}) => {
       animatedIndex={animatedIndex}
       snapPoints={snapPoints}
       backgroundComponent={CustomBackground}
-      handleComponent={CustomHandler}>
+      handleComponent={CustomHandler}
+    >
       <Animatable.View
         style={styles.header}
         animation="fadeInUp"
         delay={500}
         easing="ease-in-out"
-        duration={400}>
+        duration={400}
+      >
         <Animated.Text style={[styles.title, titleStyle]}>
           {trip.title}
         </Animated.Text>
@@ -114,7 +116,8 @@ const TripDetailsCard = ({trip}) => {
       <BottomSheetScrollView
         style={styles.scrollBox}
         showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}>
+        showsHorizontalScrollIndicator={false}
+      >
         <Animated.View style={contentStyle}>
           <RatingOverall rating={trip.rating} containerStyle={styles.rating} />
           <SectionHeader
@@ -154,12 +157,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: sizes.title,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: colors.white,
   },
   location: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
+    flexDirection: "row",
+    alignItems: "flex-start",
   },
   locationText: {
     fontSize: sizes.title,
@@ -177,7 +180,7 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     color: colors.lightGray,
-    fontWeight: 'normal',
+    fontWeight: "normal",
   },
   summary: {
     marginHorizontal: spacing.l,

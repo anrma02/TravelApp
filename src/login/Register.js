@@ -5,38 +5,24 @@ import {
   TextInput,
   Pressable,
   Text,
-  Alert,
 } from "react-native";
-import React, { useState, useEffect } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import React, { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 
-export default function Login({ navigation }) {
-  
+export default function Register() {
+  const navigation = useNavigation();
 
-  useEffect(() => {
-    getData();
-  }, []);
-  const getData = () => {
-    try {
-      AsyncStorage.getItem("UserName").then((value) => {
-        if (value != null) {
-          navigation.navigate("Root");
-        }
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const setData = async () => {
-    if (name.length == 0 || password.length == 0) {
+    if (email.length == 0 || name.length == 0 || password.length == 0) {
       Alert.alert("Warning !", "Please write your data");
     } else {
       try {
-        await AsyncStorage.setItem("UserName", name);
-        // Alert.alert("wel", { name });
-        navigation.navigate("Root");
+        await AsyncStorage.setItem("Email", email, "UserName", name);
+
+        navigation.navigate("Login");
       } catch (err) {
         console.log(err);
       }
@@ -46,13 +32,20 @@ const [name, setName] = useState("");
     <View style={styles.container}>
       <View style={StyleSheet.absoluteFill}>
         <ImageBackground
-          source={require("../../assets//images/3.png")}
+          source={require("../../assets//images/1.png")}
           resizeMode="cover"
-          style={{ flex: 1, height: "88%" }}
+          style={{ flex: 1, height: "75%" }}
         >
+          {/* <Text style={styles.loginText}>Register</Text> */}
           <View style={styles.formInputContainer}>
             <TextInput
-              placeholder="Email Or Phone Number"
+              placeholder="Email"
+              placeholderTextColor="rgba(0,0,0,0.5)"
+              style={styles.Textinput}
+              onChangeText={(value) => setEmail(value)}
+            />
+            <TextInput
+              placeholder="User Name"
               placeholderTextColor="rgba(0,0,0,0.5)"
               style={styles.Textinput}
               onChangeText={(value) => setName(value)}
@@ -67,16 +60,16 @@ const [name, setName] = useState("");
             />
             <View style={styles.formButton}>
               <Pressable onPress={() => setData()}>
-                <Text style={styles.buttonText}>Login</Text>
+                <Text style={styles.buttonText}>Register</Text>
               </Pressable>
             </View>
 
             <View style={styles.account}>
               <Text
                 style={styles.acc}
-                onPress={() => navigation.navigate("Register")}
+                onPress={() => navigation.navigate("Login")}
               >
-                Create a new account?{" "}
+                You have account
               </Text>
             </View>
           </View>
@@ -123,7 +116,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
   formButton: {
-    backgroundColor: " rgba(133,123,225,0.8)",
+    backgroundColor: " rgba(110,204,175,0.7)",
     height: 55,
 
     justifyContent: "center",

@@ -1,47 +1,48 @@
-import React from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import SearchScreen from '../screens/SearchScreen';
-import FavoriteScreen from '../screens/FavoriteScreen';
-import Icon from '../components/shared/Icon';
-import {colors, sizes} from '../constants/theme';
-import {StyleSheet, Animated} from 'react-native';
-import HomeNavigator from './HomeNavigator';
+import React from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import SearchScreen from "../screens/SearchScreen";
+import FavoriteScreen from "../screens/FavoriteScreen";
+import Icon from "../components/shared/Icon";
+import { colors, sizes } from "../constants/theme";
+import { StyleSheet, Animated } from "react-native";
+import HomeNavigator from "./HomeNavigator";
 
 const tabs = [
   {
-    name: 'Home',
+    name: "Home",
     screen: HomeNavigator,
   },
   {
-    name: 'Search',
+    name: "Search",
     screen: SearchScreen,
   },
   {
-    name: 'Favorite',
+    name: "Favorite",
     screen: FavoriteScreen,
   },
 ];
 
 const Tab = createBottomTabNavigator();
 
-const TabNavigator = () => {
+export default function TabNavigator() {
   const offsetAnimation = React.useRef(new Animated.Value(0)).current;
   return (
     <>
       <Tab.Navigator
-        initialRouteName="Home"
+        // initialRouteName="Home"
         screenOptions={{
           headerShown: false,
           tabBarShowLabel: false,
-        }}>
-        {tabs.map(({name, screen}, index) => {
+        }}
+      >
+        {tabs.map(({ name, screen }, index) => {
           return (
             <Tab.Screen
               key={name}
               name={name}
               component={screen}
               options={{
-                tabBarIcon: ({focused}) => {
+                tabBarIcon: ({ focused }) => {
                   return (
                     <Icon
                       icon={name}
@@ -79,11 +80,11 @@ const TabNavigator = () => {
       />
     </>
   );
-};
+}
 
 const styles = StyleSheet.create({
   indicator: {
-    position: 'absolute',
+    position: "absolute",
     width: 16,
     height: 1.3,
     left: sizes.width / tabs.length / 2 - 8,
@@ -92,5 +93,3 @@ const styles = StyleSheet.create({
     zIndex: 100,
   },
 });
-
-export default TabNavigator;
