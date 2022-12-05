@@ -1,11 +1,11 @@
-import React from "react";
-import { FlatList, StyleSheet } from "react-native";
-import { sizes, spacing } from "../../constants/theme";
+import React from 'react';
+import {FlatList, StyleSheet} from 'react-native';
+import {sizes, spacing} from '../../constants/theme';
 
 const CARD_WIDTH = sizes.width - 80;
 const CARD_WIDTH_SPACING = CARD_WIDTH + spacing.l;
 
-const Carousel = ({ renderItem, items = [] }) => {
+const Carousel = ({renderItem, items = []}) => {
   return (
     <FlatList
       data={items}
@@ -14,8 +14,8 @@ const Carousel = ({ renderItem, items = [] }) => {
       snapToInterval={CARD_WIDTH_SPACING}
       decelerationRate="fast"
       showsHorizontalScrollIndicator={false}
-      keyExtractor={(i) => i.id}
-      renderItem={({ item, index }) => {
+      keyExtractor={i => i.id}
+      renderItem={({item, index}) => {
         if (renderItem) {
           return renderItem({
             item,

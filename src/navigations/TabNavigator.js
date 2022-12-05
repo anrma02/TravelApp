@@ -1,11 +1,11 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import SearchScreen from "../screens/SearchScreen";
 import FavoriteScreen from "../screens/FavoriteScreen";
 import Icon from "../components/shared/Icon";
 import { colors, sizes } from "../constants/theme";
 import { StyleSheet, Animated } from "react-native";
 import HomeNavigator from "./HomeNavigator";
+import SearchNavigator from "./SearchNavigator";
 
 const tabs = [
   {
@@ -14,7 +14,7 @@ const tabs = [
   },
   {
     name: "Search",
-    screen: SearchScreen,
+    screen: SearchNavigator,
   },
   {
     name: "Favorite",
@@ -24,12 +24,12 @@ const tabs = [
 
 const Tab = createBottomTabNavigator();
 
-export default function TabNavigator() {
+const TabNavigator = () => {
   const offsetAnimation = React.useRef(new Animated.Value(0)).current;
   return (
     <>
       <Tab.Navigator
-        // initialRouteName="Home"
+        initialRouteName="Home"
         screenOptions={{
           headerShown: false,
           tabBarShowLabel: false,
@@ -80,16 +80,18 @@ export default function TabNavigator() {
       />
     </>
   );
-}
+};
 
 const styles = StyleSheet.create({
   indicator: {
     position: "absolute",
-    width: 16,
-    height: 1.3,
-    left: sizes.width / tabs.length / 2 - 8,
+    width: 15,
+    height: 1.2,
+    left: sizes.width / tabs.length / 2 - 7,
     bottom: 10,
     backgroundColor: colors.primary,
     zIndex: 100,
   },
 });
+
+export default TabNavigator;
