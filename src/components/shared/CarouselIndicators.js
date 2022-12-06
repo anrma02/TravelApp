@@ -1,6 +1,6 @@
-import React, {useMemo, useRef} from 'react';
-import {View, StyleSheet, Animated} from 'react-native';
-import {colors, sizes} from '../../constants/theme';
+import React, { useMemo, useRef } from "react";
+import { View, StyleSheet, Animated } from "react-native";
+import { colors, sizes } from "../../constants/theme";
 
 const CarouselIndicators = ({
   slidesCount,
@@ -11,7 +11,7 @@ const CarouselIndicators = ({
 }) => {
   const slides = useRef(Array.from(Array(slidesCount).keys())).current;
 
-  const {inputRange, translateOutputRange, widthOutputRange} = useMemo(
+  const { inputRange, translateOutputRange, widthOutputRange } = useMemo(
     () =>
       slides.reduce(
         (acc, _, index, arr) => {
@@ -28,9 +28,9 @@ const CarouselIndicators = ({
           }
           return acc;
         },
-        {inputRange: [], translateOutputRange: [], widthOutputRange: []},
+        { inputRange: [], translateOutputRange: [], widthOutputRange: [] }
       ),
-    [dotSize, dotSpacing, slideWidth, slides],
+    [dotSize, dotSpacing, slideWidth, slides]
   );
 
   return (
@@ -77,9 +77,10 @@ const CarouselIndicators = ({
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
+    flexDirection: "row",
     backgroundColor: colors.white,
     paddingHorizontal: 2,
+    opacity: 0.7,
     paddingVertical: 4,
     borderRadius: sizes.radius,
   },
@@ -89,7 +90,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   indicator: {
-    position: 'absolute',
+    position: "absolute",
     backgroundColor: colors.primary,
     borderRadius: sizes.radius,
     top: 4,

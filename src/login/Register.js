@@ -18,15 +18,7 @@ export default function Register() {
   const setData = async () => {
     if (email.length == 0 || name.length == 0 || password.length == 0) {
       Alert.alert("Warning !", "Please write your data");
-    } else {
-      try {
-        await AsyncStorage.setItem("Email", email, "UserName", name);
-
-        navigation.navigate("Login");
-      } catch (err) {
-        console.log(err);
-      }
-    }
+    } 
   };
   return (
     <View style={styles.container}>
