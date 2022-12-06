@@ -1,23 +1,23 @@
-import React from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import FavoriteScreen from "../screens/FavoriteScreen";
-import Icon from "../components/shared/Icon";
-import { colors, sizes } from "../constants/theme";
-import { StyleSheet, Animated } from "react-native";
-import HomeNavigator from "./HomeNavigator";
-import SearchNavigator from "./SearchNavigator";
+import React from 'react';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import FavoriteScreen from '../screens/FavoriteScreen';
+import Icon from '../components/shared/Icon';
+import {colors, sizes} from '../constants/theme';
+import {StyleSheet, Animated} from 'react-native';
+import HomeNavigator from './HomeNavigator';
+import SearchNavigator from './SearchNavigator';
 
 const tabs = [
   {
-    name: "Home",
+    name: 'Home',
     screen: HomeNavigator,
   },
   {
-    name: "Search",
+    name: 'Search',
     screen: SearchNavigator,
   },
   {
-    name: "Favorite",
+    name: 'Favorite',
     screen: FavoriteScreen,
   },
 ];
@@ -33,16 +33,15 @@ const TabNavigator = () => {
         screenOptions={{
           headerShown: false,
           tabBarShowLabel: false,
-        }}
-      >
-        {tabs.map(({ name, screen }, index) => {
+        }}>
+        {tabs.map(({name, screen}, index) => {
           return (
             <Tab.Screen
               key={name}
               name={name}
               component={screen}
               options={{
-                tabBarIcon: ({ focused }) => {
+                tabBarIcon: ({focused}) => {
                   return (
                     <Icon
                       icon={name}
@@ -84,11 +83,11 @@ const TabNavigator = () => {
 
 const styles = StyleSheet.create({
   indicator: {
-    position: "absolute",
-    width: 15,
-    height: 1.2,
-    left: sizes.width / tabs.length / 2 - 7,
-    bottom: 10,
+    position: 'absolute',
+    width: 10,
+    height: 2,
+    left: sizes.width / tabs.length / 2 - 5,
+    bottom: 30,
     backgroundColor: colors.primary,
     zIndex: 100,
   },

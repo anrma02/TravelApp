@@ -439,14 +439,3 @@ export const PLACES = [
     hotels: [HOTELS[7], HOTELS[8]],
   },
 ];
-export const SEARCH_PLACES = [...PLACES, ...TOP_PLACES].map((item) => ({
-  ...item,
-  id: Math.random().toString(),
-}));
-
-export const SEARCH_HOTELS = [...Object.values(HOTELS)].map((item) => ({
-  ...item,
-  id: Math.random().toString(),
-}));
-
-export const SEARCH_ALL = [...SEARCH_PLACES, ...SEARCH_HOTELS];
